@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Hello World!"
+    return "Welcome to Agustin's test!"
 
 if __name__ == '__main__':
     port = 5000 # any port you wish, just be consistent with the dockerfile and main.tf

@@ -1,7 +1,4 @@
-variable "aws_access_key" {
-  type = string
-}
-
-variable "aws_secret_key" {
-  type = string
+variable "tag_version" {
+  type        = string  # Specify the data type of the variable
+  default     = "latest"  # Optional default value
 }

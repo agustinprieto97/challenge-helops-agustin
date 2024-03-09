@@ -1,23 +1,41 @@
+terraform {
+  required_providers {
+     kaniko = {
+      source = "registry.terraform.io/seal-io/kaniko"
+    }
+  }
+  cloud {
+    organization = "testing-agustin"
+
+    workspaces {
+      name = "helops-test"
+    }
+  }
+}
+
 provider "aws" {
-  region  = "us-east-1"
-  access_key = var.aws_access_key
-  secret_key = var.aws_secret_key
+  region  = "eu-north-1"
 }
 
 resource "aws_lightsail_container_service" "flask_application" {
-  name = "flask-application"
+  name = "agustin-test"
   power = "nano"
   scale = 1
   tags = {
     version = "1.0.0"
   }
+  private_registry_access {
+    ecr_image_puller_role {
+      is_active = true
+    }
+  }
 }
 
 resource "aws_lightsail_container_service_deployment_version" "flask_app_deployment" {
   container {
-    container_name = "flask-application"
+    container_name = "agustin-test"
 
-    image = "treydegale/flask_app:0.0.3"
+    image = "730335429342.dkr.ecr.eu-north-1.amazonaws.com/pepe:flask"
     
     ports = {
       # Consistent with the port exposed by the Dockerfile and app.py
@@ -26,7 +44,7 @@ resource "aws_lightsail_container_service_deployment_version" "flask_app_deploym
   }
 
   public_endpoint {
-    container_name = "flask-application"
+    container_name = "agustin-test"
     # Consistent with the port exposed by the Dockerfile and app.py
     container_port = 5000
 
