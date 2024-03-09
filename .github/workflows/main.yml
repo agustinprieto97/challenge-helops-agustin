@@ -34,6 +34,8 @@ jobs:
     defaults:
       run:
         working-directory: ./terraform
+    env:
+      TF_CLOUD_ORGANIZATION: ${{ secrets.TF_CLOUD_ORGANIZATION }}
 
     steps:
     - name: 'Checkout'
@@ -46,10 +48,7 @@ jobs:
 
     - name: 'Terraform Init'
       run: terraform init
-      env:
-        TF_CLOUD_ORGANIZATION: ${{ secrets.TF_CLOUD_ORGANIZATION }}
 
     - name: 'Terraform Apply'
       run: terraform apply -auto-approve
-      env:
-        TF_CLOUD_ORGANIZATION: ${{ secrets.TF_CLOUD_ORGANIZATION }}
+      
