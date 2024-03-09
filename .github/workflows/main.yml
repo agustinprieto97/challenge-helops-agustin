@@ -5,7 +5,7 @@ on:
     branches:
       - 'main'
 
-using-an-action
+#using-an-action
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
