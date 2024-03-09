@@ -26,3 +26,26 @@ jobs:
           context: docker_image/
           push: true
           tags: ghcr.io/agustinprieto97/challenge-helops-agustin:v1
+
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 'Checkout'
+      uses: actions/checkout@v2
+
+    - name: 'Setup Terraform'
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: latest
+
+    - name: 'Terraform Init'
+      run: terraform init
+      env:
+        TF_CLOUD_ORGANIZATION: ${{ secrets.TF_CLOUD_ORGANIZATION }}
+
+    - name: 'Terraform Apply'
+      run: terraform apply -auto-approve
+      env:
+        TF_CLOUD_ORGANIZATION: ${{ secrets.TF_CLOUD_ORGANIZATION }}

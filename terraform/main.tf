@@ -35,7 +35,7 @@ resource "aws_lightsail_container_service_deployment_version" "flask_app_deploym
   container {
     container_name = "agustin-test"
 
-    image = "730335429342.dkr.ecr.eu-north-1.amazonaws.com/pepe:flask"
+    image = "ghcr.io/agustinprieto97/challenge-helops-agustin:v1"
     
     ports = {
       # Consistent with the port exposed by the Dockerfile and app.py
