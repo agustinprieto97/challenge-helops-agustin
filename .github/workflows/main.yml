@@ -28,8 +28,12 @@ jobs:
           tags: ghcr.io/agustinprieto97/challenge-helops-agustin:v1
 
   terraform:
+    needs: build-and-push-image
     name: 'Terraform'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./terraform
 
     steps:
     - name: 'Checkout'
