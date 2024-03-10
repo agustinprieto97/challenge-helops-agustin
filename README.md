@@ -24,7 +24,7 @@ For this project, I have chosen **Lightsail** as the AWS service to deploy the c
 
 #### AWS Account
 
-1. Create a personal user following best practices.
+1. Create a IAM user following best practices.
 2. Set up a programmatic user for Terraform deployments.
 3. Generate access and secret keys for the programmatic user.
 
