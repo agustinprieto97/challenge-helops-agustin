@@ -25,6 +25,9 @@ jobs:
     steps:
       # - name: Step
       #   run: export SHORT_SHA=${GITHUB_SHA::7}
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
       - name: Obtener short SHA del commit
         id: set_output
         run: echo "::set-output name=short_sha::$(git rev-parse --short HEAD)" && echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
@@ -32,9 +35,6 @@ jobs:
       - name: Obtener short SHA del commit 2
         id: set_output2
         run: echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-
-      - name: Checkout repository
-        uses: actions/checkout@v3
 
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
