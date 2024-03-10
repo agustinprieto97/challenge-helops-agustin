@@ -48,7 +48,7 @@ jobs:
         with:
           context: docker_image/
           push: true
-          tags: ghcr.io/agustinprieto97/challenge-helops-agustin:${{vars.SHORT_SHA}}
+          tags: ghcr.io/agustinprieto97/challenge-helops-agustin:${{env.SHORT_SHA}}
   
   terraform-cloud-apply-run:
     needs: build-and-push-image
