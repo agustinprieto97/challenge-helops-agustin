@@ -16,36 +16,50 @@ List the prerequisites necessary to run your project, including:
 
 ## Context
 
-For this project, I have chosen **Lightsail** as the AWS service to deploy the container. I've also prepared a simple demo app in Python to run within the container. This content is hosted in a **GitHub** repository, and the deployment steps are automated using GitHub Actions. Additionally, I'll be leveraging **Terraform** for managing the infrastructure.
+For this project, I have chosen **Lightsail** as the AWS service to deploy the container. I've also prepared a simple demo app in Python to run within the container. This content is hosted in a GitHub repository, and the deployment steps are automated using **GitHub Actions**. Additionally, I'll be leveraging **Terraform** for managing the infrastructure.
 
-## Step 1: Prepare Enironment
+## Usage
 
-### Step 1.a: AWS Account
+### Step 1: Prepare Environment
 
-* crear un usuario personal (good practices)
-* crear un usuario programatico para que Terraform deploye
-* crear access key y secret key para usuario programatico
+#### AWS Account
 
-### Step 1.b: Terraform Cloud Account
+1. Create a personal user following best practices.
+2. Set up a programmatic user for Terraform deployments.
+3. Generate access and secret keys for the programmatic user.
 
-* crear organizacion
-* crear workspace
-* crear variables de entorno para el workspace con los secrets de AWS:
-  * `AWS_ACCESS_KEY_ID` y rellenar con el Access Key del usuario programatico
-  * `AWS_SECRET_ACCESS_KEY` y rellenar con el Secret Key del usuario programatico
-* generar API TOKEN USER en <https://app.terraform.io/app/settings/tokens>
+#### Terraform Cloud Account
 
-### Step 1.c: Github Repository
+1. Establish an organization.
+2. Create a workspace.
+3. Configure environment variables for the workspace containing AWS secrets:
+    * `AWS_ACCESS_KEY_ID`: Fill in with the Access Key of the programmatic user.
+    * `AWS_SECRET_ACCESS_KEY`: Fill in with the Secret Key of the programmatic user.
+4. Generate an API TOKEN USER at [Terraform Settings](https://app.terraform.io/app/settings/tokens).
 
-* accedes al repo
-* configurar el secret de `TF_API_TOKEN` y la variable `TF_CLOUD_ORGANIZATION` para dar acceso a la cuenta de Terraform.
+#### GitHub Repository
 
-## Step 2: 
+1. Access the repository.
+2. Configure the `TF_API_TOKEN` secret and set the `TF_CLOUD_ORGANIZATION` variable to grant access to the Terraform account.
+3. Set the `AUTO_DEPLOY` variable to `true` to enable automatic deployment after a commit.
 
-* Revisarque los archivos ``variables.tf`` y ``terraform.tf`` tengan las variables pertinentes
-* commit algo o ejecutar a mano el workflow `Application Deploy`
-* para el caso de eliminarlo, ejecutar manualmente el workflow `Application Destroy`
+### Step 2: Execute Deployment
 
-## Step 3: Prepare Workflow and the Application's code
+1. Ensure that the `variables.tf` and `terraform.tf` files contain relevant variables.
+2. Commit changes or manually trigger the `Application Deploy` workflow.
+3. To remove the deployment, manually execute the `Application Destroy` workflow.
 
-## Step 4: Deploy the Code
+### Step 3: Verification
+
+1. Check for any errors in the Terraform actions.
+2. Verify functionality in AWS Lightsail by accessing the provided URL from Amazon.
+
+## Future Improvements
+
+* Separate the code into two repositories: one for development and one for Infrastructure as Code (IaC).
+* Implement personalized domain setups (load balancer/apigateway, domain registration, certificate).
+* Introduce a private registry for secure deployments.
+* Enhance monitoring and alerting capabilities.
+* Implement reusable Terraform modules for increased efficiency.
+* Enhance Continuous Integration (CI)/Git Flow practices.
+* Consider transitioning to Amazon EKS or ECS for future projects instead of Lightsail.
