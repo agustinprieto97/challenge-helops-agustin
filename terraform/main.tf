@@ -1,6 +1,6 @@
 terraform {
   required_providers {
-     kaniko = {
+    kaniko = {
       source = "registry.terraform.io/seal-io/kaniko"
     }
   }
@@ -14,11 +14,11 @@ terraform {
 }
 
 provider "aws" {
-  region  = "eu-north-1"
+  region = "eu-north-1"
 }
 
 resource "aws_lightsail_container_service" "flask_application" {
-  name = "agustin-test"
+  name  = "agustin-test"
   power = "nano"
   scale = 1
   tags = {
@@ -36,7 +36,7 @@ resource "aws_lightsail_container_service_deployment_version" "flask_app_deploym
     container_name = "agustin-test"
 
     image = "ghcr.io/agustinprieto97/challenge-helops-agustin:v1"
-    
+
     ports = {
       # Consistent with the port exposed by the Dockerfile and app.py
       5000 = "HTTP"
