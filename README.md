@@ -20,12 +20,10 @@ We need a repository with diferents files:
 * **_docker_image directory:_** here we store the Dockerfile, for prepare the container and the code for the application, Python file, the HTML index and the CSS file.
 * ***_terraform directory:_*** for the Terraform file, where will be allowed the deploy for AWS.
 * **_.gitignore file:_** this file is for ignore diferentes file in the moment of run the workflow.
-* **_README.md file:_** for the documentation. 
-
-
+* **_README.md file:_** for the documentation.
 
 # Step 2: Prepare Terraform Environment.
-
+preparar aws usuario y access token
 # Step 3: Prepare Workflow and the Application's code.
 
 # Step 4: Deploy the Code.
