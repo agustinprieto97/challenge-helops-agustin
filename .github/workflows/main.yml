@@ -1,4 +1,4 @@
-name: ci
+name: Application Deploy
 
 on:
   pull_request:
@@ -36,55 +36,35 @@ jobs:
           context: docker_image/
           push: true
           tags: ghcr.io/agustinprieto97/challenge-helops-agustin:v1
-     
+  
   terraform-cloud-apply-run:
     needs: build-and-push-image
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./terraform
+    # permissions:
+    #   pull-requests: write
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.2.0
-        id: upload
-        with:
-          workspace: ${{ env.TF_WORKSPACE }}
-          directory: ${{ env.CONFIG_DIRECTORY }}
-
-      - uses: hashicorp/tfc-workflows-github/actions/create-run@v1.2.0
-        id: create-run
-        with:
-          workspace: ${{ env.TF_WORKSPACE }}
-          configuration_version: ${{ steps.upload.outputs.configuration_version_id }}
-
-      - uses: hashicorp/tfc-workflows-github/actions/apply-run@v1.2.0
-        id: apply
-        if: ${{ fromJSON(steps.create-run.outputs.payload).data.attributes.actions.IsConfirmable }}
-        with:
-          run: ${{ steps.create-run.outputs.run_id }}
-          comment: "Apply Run from GitHub Actions CI ${{ github.sha }}"
-
-  # terraform:
-  #   needs: build-and-push-image
-  #   name: 'Terraform'
-  #   runs-on: ubuntu-latest
-  #   defaults:
-  #     run:
-  #       working-directory: ./terraform
-  #   env:
-  #     TF_CLOUD_ORGANIZATION: ${{ vars.TF_CLOUD_ORGANIZATION }}
-  #     TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
-
-  #   steps:
-  #   - name: 'Checkout'
-  #     uses: actions/checkout@v2
-
-  #   - name: 'Setup Terraform'
-  #     uses: hashicorp/setup-terraform@v1
-  #     with:
-  #       terraform_version: latest
-
-  #   - name: 'Terraform Init'
-  #     run: terraform init
-
-  #   - name: 'Terraform Apply'
-  #     run: terraform apply -auto-approve
-      
+    - uses: actions/checkout@v4
+    - uses: hashicorp/setup-terraform@v3
+      with:
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+    
+    - name: Terraform fmt
+      id: fmt
+      run: terraform fmt -check
+      continue-on-error: true
+    
+    - name: Terraform Init
+      id: init
+      run: terraform init
+    
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color
+    
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan -no-color
+      continue-on-error: true

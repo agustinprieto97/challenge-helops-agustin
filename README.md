@@ -22,7 +22,6 @@ We need a repository with diferents files:
 * **_.gitignore file:_** this file is for ignore diferentes file in the moment of run the workflow.
 * **_README.md file:_** for the documentation. 
 
-![alt text](image.png)
 
 
 # Step 2: Prepare Terraform Environment.
