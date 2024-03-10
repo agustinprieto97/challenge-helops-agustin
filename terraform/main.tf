@@ -1,9 +1,4 @@
 terraform {
-  required_providers {
-    kaniko = {
-      source = "registry.terraform.io/seal-io/kaniko"
-    }
-  }
   cloud {
     organization = "testing-agustin"
 

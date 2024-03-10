@@ -1,6 +1,7 @@
 name: Application Deploy
 
 on:
+  workflow_dispatch:
   pull_request:
     types: [opened, synchronize]
     branches:
@@ -43,8 +44,8 @@ jobs:
     defaults:
       run:
         working-directory: ./terraform
-    permissions:
-      pull-requests: write
+    # permissions:
+    #   pull-requests: write
     steps:
     - uses: actions/checkout@v4
     - uses: hashicorp/setup-terraform@v3
@@ -67,4 +68,8 @@ jobs:
     - name: Terraform Plan
       id: plan
       run: terraform plan -no-color
-      continue-on-error: true
+      # continue-on-error: true
+
+    - name: Terraform Apply
+      id: apply
+      run: terraform apply -auto-approve
