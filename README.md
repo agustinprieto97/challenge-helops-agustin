@@ -23,7 +23,7 @@ We need a repository with diferents files:
 * **_README.md file:_** for the documentation.
 
 # Step 2: Prepare Terraform Environment.
-preparar aws usuario y access token
+
 # Step 3: Prepare Workflow and the Application's code.
 
 # Step 4: Deploy the Code.
