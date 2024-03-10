@@ -50,6 +50,7 @@ jobs:
   
   terraform-cloud-apply-run:
     needs: build-and-push-image
+    if: ${{ var.AUTO_DEPLOY == "TRUE" }}
     runs-on: ubuntu-latest
     defaults:
       run:

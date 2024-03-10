@@ -1,6 +1,6 @@
-variable "tag_version" {
+variable "app_name" {
   type    = string   # Specify the data type of the variable
-  default = "latest" # Optional default value
+  default = "agustin-test" # Optional default value
 }
 
 variable "aws_region" {
@@ -11,4 +11,9 @@ variable "aws_region" {
 variable "image_name" {
   type    = string   # Specify the data type of the variable
   default = "ghcr.io/agustinprieto97/challenge-helops-agustin" # Optional default value
+}
+
+variable "tag_version" {
+  type    = string   # Specify the data type of the variable
+  default = "latest" # Optional default value
 }

@@ -1,19 +1,9 @@
-terraform {
-  cloud {
-    organization = "testing-agustin"
-
-    workspaces {
-      name = "helops-test"
-    }
-  }
-}
-
 provider "aws" {
   region = "${var.aws_region}"
 }
 
 resource "aws_lightsail_container_service" "flask_application" {
-  name  = "agustin-test"
+  name  = "${ var.app_name }"
   power = "nano"
   scale = 1
   tags = {
@@ -28,7 +18,7 @@ resource "aws_lightsail_container_service" "flask_application" {
 
 resource "aws_lightsail_container_service_deployment_version" "flask_app_deployment" {
   container {
-    container_name = "agustin-test"
+    container_name = "${ var.app_name }"
 
     image = "${var.image_name}:${var.tag_version}"
 
@@ -39,7 +29,7 @@ resource "aws_lightsail_container_service_deployment_version" "flask_app_deploym
   }
 
   public_endpoint {
-    container_name = "agustin-test"
+    container_name = "${ var.app_name }"
     # Consistent with the port exposed by the Dockerfile and app.py
     container_port = 5000
 
