@@ -1,4 +1,4 @@
-name: Application Deploy
+name: Application Destroy
 
 on:
   workflow_dispatch:
