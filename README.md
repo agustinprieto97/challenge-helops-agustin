@@ -51,7 +51,7 @@ For this project, I have chosen **Lightsail** as the AWS service to deploy the c
 
 ### Step 3: Verification
 
-1. Check for any errors in the Terraform actions.
+1. Check for any errors in GitHub Actions.
 2. Verify functionality in AWS Lightsail by accessing the provided URL from Amazon.
 
 ## Future Improvements
