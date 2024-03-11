@@ -9,11 +9,6 @@ resource "aws_lightsail_container_service" "flask_application" {
   tags = {
     version = "1.0.0"
   }
-  private_registry_access {
-    ecr_image_puller_role {
-      is_active = true
-    }
-  }
 }
 
 resource "aws_lightsail_container_service_deployment_version" "flask_app_deployment" {
