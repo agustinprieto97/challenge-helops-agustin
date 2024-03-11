@@ -54,7 +54,7 @@ For this project, I have chosen **Lightsail** as the AWS service to deploy the c
 1. Check for any errors in GitHub Actions.
 2. Verify functionality in AWS Lightsail by accessing the provided URL from Amazon.
 
-## Future Improvements.
+## Future Improvements
 
 * Separate the code into two repositories: one for development and one for Infrastructure as Code (IaC).
 * Implement personalized domain setups (load balancer, domain registration, certificate).
