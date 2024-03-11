@@ -57,7 +57,7 @@ For this project, I have chosen **Lightsail** as the AWS service to deploy the c
 ## Future Improvements
 
 * Separate the code into two repositories: one for development and one for Infrastructure as Code (IaC).
-* Implement personalized domain setups (load balancer/apigateway, domain registration, certificate).
+* Implement personalized domain setups (apigateway, domain registration, certificate).
 * Introduce a private registry for secure deployments.
 * Enhance monitoring and alerting capabilities.
 * Implement reusable Terraform modules for increased efficiency.
